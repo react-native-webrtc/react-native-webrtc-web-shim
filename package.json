@@ -1,0 +1,25 @@
+{
+  "name": "react-native-webrtc-web-shim",
+  "version": "0.0.1",
+  "description": "Shim to code-share react-native-webrtc logic with Web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruddell/react-native-webrtc-web-shim.git"
+  },
+  "keywords": [
+    "react-native",
+    "webrtc",
+    "react-native-web",
+    "react-native-webrtc"
+  ],
+  "author": "Jon Ruddell",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ruddell/react-native-webrtc-web-shim/issues"
+  },
+  "homepage": "https://github.com/ruddell/react-native-webrtc-web-shim#readme"
+}
