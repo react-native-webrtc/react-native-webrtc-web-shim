@@ -1,2 +1,7 @@
 node_modules
+
+# ignore files output from npm pack
 *shim*.tgz
+
+# ignore IDE files
+.idea

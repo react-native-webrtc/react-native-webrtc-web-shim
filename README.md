@@ -65,5 +65,3 @@ npm pack
 cd ../MyApp
 npm install ../react-native-webrtc-web-shim/react-native-webrtc-web-shim-*.tgz
 ```
-
-Please make sure to run `npm run prettier && npm run lint` before opening a pull request.
