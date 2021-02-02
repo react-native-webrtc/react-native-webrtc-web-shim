@@ -53,3 +53,17 @@ webRtcPeer.ontrack = async ({ track, streams }) => {
   }
 };
 ```
+
+### Contributing
+
+#### Local Build
+
+Due to [this React issue](https://github.com/facebook/react/issues/13991), it is not possible to use `npm link`. To run locally you will need to package the app and install the `.tgz` file in your React Native app:
+
+```bash
+npm pack
+cd ../MyApp
+npm install ../react-native-webrtc-web-shim/react-native-webrtc-web-shim-*.tgz
+```
+
+Please make sure to run `npm run prettier && npm run lint` before opening a pull request.
