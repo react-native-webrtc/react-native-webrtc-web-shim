@@ -39,7 +39,7 @@
     "react-native-webrtc"
   ],
   "author": "Jon Ruddell",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ruddell/react-native-webrtc-web-shim/issues"
   },
