@@ -1,14 +1,36 @@
 {
   "name": "react-native-webrtc-web-shim",
   "version": "0.0.1",
-  "description": "Shim to code-share react-native-webrtc logic with Web",
+  "description": "Shim for React Native WebRTC to support React Native Web",
   "main": "index.js",
   "scripts": {
+    "prettier": "prettier --write \"{,.,**/}*.{md,json,js,ts,tsx}\"",
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ruddell/react-native-webrtc-web-shim.git"
+  },
+  "devDependencies": {
+    "eslint": "^7.19.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.2.1",
+    "react": "^16.13.1",
+    "react-native": "0.63.4",
+    "react-native-web": "^0.14.11",
+    "react-native-webrtc": "1.87.3"
+  },
+  "peerDependencies": {
+    "react": "~16.x",
+    "react-native": "~0.63.x",
+    "react-native-web": "~0.14.x",
+    "react-native-webrtc": "~1.87.x"
   },
   "keywords": [
     "react-native",
