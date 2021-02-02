@@ -4,7 +4,7 @@
 
 ## Requirements
 
-This library assumes you have an existing `react-native` application using `react-native-webrtc`.
+This library assumes you have an existing React Native application using [`react-native-webrtc`](https://github.com/react-native-webrtc/react-native-webrtc).
 
 ## Installation
 
@@ -30,7 +30,7 @@ Replace the import statement of `react-native-webrtc` to import from `react-nati
 
 #### RTCView
 
-When displaying the `RTCView` component, pass it the `stream` object as a prop instead of `streamURL`.
+When displaying the `RTCView` component, pass it the `stream` object as a prop instead of `streamURL`. On Web, this component renders an HTML5 video tag.
 
 ```javascript
 <RTCView
@@ -44,9 +44,11 @@ When displaying the `RTCView` component, pass it the `stream` object as a prop i
 Add an `ontrack` listener to your `RTCPeerConnection` object, similar to the `onaddstream` listener.
 
 ```javascript
+// existing code, keep this for native support
 webRtcPeer.onaddstream = async ({ stream }) =>
   await addVideo(sessionId, stream);
-// add an ontrack listener for Safari support
+
+// add an ontrack listener for web support
 webRtcPeer.ontrack = async ({ track, streams }) => {
   if (track.kind === 'video') {
     await addVideo(sessionId, streams[0]);
@@ -58,7 +60,17 @@ webRtcPeer.ontrack = async ({ track, streams }) => {
 
 #### Local Build
 
-Due to [this React issue](https://github.com/facebook/react/issues/13991), it is not possible to use `npm link`. To run locally you will need to package the app and install the `.tgz` file in your React Native app:
+Due to [this React issue](https://github.com/facebook/react/issues/13991), to run locally you will need to link `react` in this project and your application.
+
+```bash
+cd node_modules/react
+npm link
+cd ../../MyApp
+npm link react
+
+```
+
+Alternatively, you can package the app and install it directly. Note you will need to re-package the app to apply any changes.
 
 ```bash
 npm pack
