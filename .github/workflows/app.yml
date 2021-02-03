@@ -1,0 +1,81 @@
+name: App Tests
+on:
+  workflow_dispatch:
+    inputs:
+      recordVideo:
+        description: 'Record E2E Tests'
+        required: true
+        default: 'false'
+  push:
+    branches:
+  pull_request:
+defaults:
+  run:
+    shell: bash
+jobs:
+  generate:
+    name: e2e-${{ matrix.app_type }}
+    runs-on: macos-latest
+    if: "!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.pull_request.title, '[skip ci]') && !contains(github.event.pull_request.title, '[ci skip]') && !contains(github.event.ref_type, '[tag]')"
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        node_version: [14.x]
+        app_type:
+          - DemoApp
+        include:
+          - app_type: DemoApp
+    env:
+      SCRIPT_DIR: ./test/scripts
+    steps:
+      - name: 'SETUP: Checkout'
+        uses: actions/checkout@v2
+      - name: 'SETUP: History'
+        run: git --no-pager log -n 10 --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue) <%an>%Creset' --abbrev-commit
+      - name: 'SETUP: Node'
+        uses: actions/setup-node@v2.1.4
+        with:
+          node-version: ${{ matrix.node_version }}
+      - name: 'SETUP: Java'
+        uses: actions/setup-java@v1
+        with:
+          java-version: '8.x'
+      - name: 'SETUP: Cache Maven archetypes'
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: 'SETUP: Clone Kite'
+        run: $SCRIPT_DIR/clone-kite.sh
+      - name: 'SETUP: Config Git'
+        run: $SCRIPT_DIR/git-config.sh
+      - name: 'INSTALL: Install Browsers and Drivers'
+        run: $SCRIPT_DIR/install-kite.sh
+        env:
+          KITE_HOME: ${{ runner.workspace }}/KITE
+          KITE_SCRIPT_DIR: ${{ runner.workspace }}/KITE/scripts/mac
+      - name: 'TEST: Start Grid'
+        run: $SCRIPT_DIR/start-kite.sh
+        env:
+          KITE_HOME: ${{ runner.workspace }}/KITE
+          KITE_SCRIPT_DIR: ${{ runner.workspace }}/KITE/scripts/mac
+      - name: 'TEST: Run Kite Tests'
+        run: $SCRIPT_DIR/run-kite.sh
+        env:
+          KITE_HOME: ${{ runner.workspace }}/KITE
+          KITE_SCRIPT_DIR: ${{ runner.workspace }}/KITE/scripts/mac
+      - name: 'POST-TEST: Display Tools'
+        run: $SCRIPT_DIR/display-tools.sh
+        if: ${{ always() }}
+      - name: 'POST-TEST: Upload Artifacts'
+        uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: kite-artifacts-${{ matrix.app_type }}
+          path: |
+            ${{ runner.workspace }}/KITE/KITE-Example-Test
+            !${{ runner.workspace }}/KITE/KITE-Example-Test/target
+            !${{ runner.workspace }}/KITE/KITE-Example-Test/js/node_modules
