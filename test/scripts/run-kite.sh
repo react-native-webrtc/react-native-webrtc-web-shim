@@ -6,7 +6,7 @@ cd ../KITE
 ./configureMacCI.sh
 
 echo 'Running tests...'
-cd $KITE_HOME/KITE-Example-Test
+cd $GITHUB_WORKSPACE/test/kite
 
 # setup maven wrapper
 mvn -N io.takari:maven:0.7.7:wrapper
@@ -15,4 +15,4 @@ mvn -N io.takari:maven:0.7.7:wrapper
 ./mvnw clean install -DskipTests -ntp
 
 # run tests
-java -Dkite.firefox.profile="$KITE_HOME"/third_party/firefox-h264-profiles/ -cp "$KITE_HOME/KITE-Engine/target/kite-jar-with-dependencies.jar:target/*" org.webrtc.kite.Engine $GITHUB_WORKSPACE/test/scripts/conf.json
+$KITE_HOME/scripts/mac/path/r configs/all.config.json

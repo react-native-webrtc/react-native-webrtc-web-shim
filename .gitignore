@@ -5,3 +5,10 @@ node_modules
 
 # ignore IDE files
 .idea
+*.iml
+
+# ignore kite files
+test/kite/logs
+test/kite/results
+test/kite/target
+test/kite/kite-allure-reports

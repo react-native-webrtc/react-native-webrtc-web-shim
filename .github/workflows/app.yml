@@ -23,9 +23,9 @@ jobs:
       matrix:
         node_version: [14.x]
         app_type:
-          - DemoApp
+          - WebRtcDemo
         include:
-          - app_type: DemoApp
+          - app_type: WebRtcDemo
     env:
       SCRIPT_DIR: ./test/scripts
     steps:
@@ -48,6 +48,12 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
+      - name: 'SETUP: npm install and link in library'
+        run: |
+          npm ci
+          npm link
+      - name: 'SETUP: Generate Expo App'
+        run: $SCRIPT_DIR/generate-app.sh
       - name: 'SETUP: Clone Kite'
         run: $SCRIPT_DIR/clone-kite.sh
       - name: 'SETUP: Config Git'
@@ -76,6 +82,9 @@ jobs:
         with:
           name: kite-artifacts-${{ matrix.app_type }}
           path: |
+            ${{ runner.workspace }}/WebRtcDemo
+            !${{ runner.workspace }}/WebRtcDemo/node_modules
+            !${{ runner.workspace }}/WebRtcDemo/.expo
             ${{ runner.workspace }}/KITE/KITE-Example-Test
             !${{ runner.workspace }}/KITE/KITE-Example-Test/target
             !${{ runner.workspace }}/KITE/KITE-Example-Test/js/node_modules
