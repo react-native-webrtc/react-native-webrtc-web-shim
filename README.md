@@ -60,7 +60,13 @@ webRtcPeer.ontrack = async ({ track, streams }) => {
 
 #### Local Build
 
-Due to [this React issue](https://github.com/facebook/react/issues/13991), to run locally you will need to link `react` in this project and your application.
+Fork and clone the repository and run:
+
+```javascript
+npm link
+```
+
+If you run `npm install`, it will install the peer-dependencies. Due to [this React issue](https://github.com/facebook/react/issues/13991), you will need to link `react` in this project and your application.
 
 ```bash
 cd node_modules/react
@@ -68,12 +74,4 @@ npm link
 cd ../../MyApp
 npm link react
 
-```
-
-Alternatively, you can package the app and install it directly. Note you will need to re-package the app to apply any changes.
-
-```bash
-npm pack
-cd ../MyApp
-npm install ../react-native-webrtc-web-shim/react-native-webrtc-web-shim-*.tgz
 ```

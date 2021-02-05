@@ -58,11 +58,13 @@ jobs:
         run: $SCRIPT_DIR/clone-kite.sh
       - name: 'SETUP: Config Git'
         run: $SCRIPT_DIR/git-config.sh
-      - name: 'INSTALL: Install Browsers and Drivers'
+      - name: 'SETUP: Install Browsers and Drivers'
         run: $SCRIPT_DIR/install-kite.sh
         env:
           KITE_HOME: ${{ runner.workspace }}/KITE
           KITE_SCRIPT_DIR: ${{ runner.workspace }}/KITE/scripts/mac
+      - name: 'PRE-TEST: Display Tools'
+        run: $SCRIPT_DIR/display-tools.sh
       - name: 'TEST: Start Grid'
         run: $SCRIPT_DIR/start-kite.sh
         env:
@@ -73,9 +75,12 @@ jobs:
         env:
           KITE_HOME: ${{ runner.workspace }}/KITE
           KITE_SCRIPT_DIR: ${{ runner.workspace }}/KITE/scripts/mac
-      - name: 'POST-TEST: Display Tools'
-        run: $SCRIPT_DIR/display-tools.sh
+      - name: 'POST-TEST: Generate Kite Report'
+        run: $SCRIPT_DIR/generate-kite-report.sh
         if: ${{ always() }}
+        env:
+          KITE_HOME: ${{ runner.workspace }}/KITE
+          KITE_SCRIPT_DIR: ${{ runner.workspace }}/KITE/scripts/mac
       - name: 'POST-TEST: Upload Artifacts'
         uses: actions/upload-artifact@v2
         if: ${{ always() }}
@@ -88,3 +93,11 @@ jobs:
             ${{ runner.workspace }}/KITE/KITE-Example-Test
             !${{ runner.workspace }}/KITE/KITE-Example-Test/target
             !${{ runner.workspace }}/KITE/KITE-Example-Test/js/node_modules
+      - name: 'POST-TEST: Update Github Pages with Kite Report'
+        if: github.ref == 'refs/heads/main'
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.RUDDELL_GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: test/kite/allure-report # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch

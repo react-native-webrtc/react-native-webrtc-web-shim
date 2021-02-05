@@ -9,6 +9,7 @@ node_modules
 
 # ignore kite files
 test/kite/logs
+test/kite/allure-report
 test/kite/results
 test/kite/target
 test/kite/kite-allure-reports
