@@ -36,17 +36,17 @@
         "meetingDuration": 5,
         "getStats": {
           "enabled": true,
-          "statsCollectionTime": 5000,
+          "statsCollectionTime": 10000,
           "statsCollectionInterval": 250,
-          "peerConnections": ["window.component.state.peers[0]"],
+          "peerConnections": ["[...window.component.state.peers.values()][0]"],
           "selectedStats": ["inbound-rtp", "outbound-rtp", "candidate-pair"]
         },
         "getCharts": {
           "enabled": true,
           "pathToGenerateChartsFile": "/generateCharts-min.js",
           "pathToChartBundleMin": "/chart.bundle.min.js",
-          "chartsStatsInterval": 7000,
-          "peerConnections": ["window.component.state.peers[0]"],
+          "chartsStatsInterval": 500,
+          "peerConnections": ["[...window.component.state.peers.values()][0]"],
           "config": {
             "width": 500,
             "height": 500,

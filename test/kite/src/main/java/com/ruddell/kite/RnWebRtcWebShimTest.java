@@ -60,10 +60,9 @@ public class RnWebRtcWebShimTest extends KiteBaseTest {
         runner.addStep(new CustomScreenshotStep(runner, isBroadcaster));
       }
 
-//      // disabling, we wait for the Charts step as well
-//      if (this.meetingDuration > 0) {
-//        runner.addStep(new StayInMeetingStep(runner, meetingDuration));
-//      }
+      if (this.meetingDuration > 0) {
+        runner.addStep(new StayInMeetingStep(runner, meetingDuration));
+      }
 
       if (this.allureCharts) {
         runner.addStep(new StopGetStatsStep(runner));
