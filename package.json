@@ -1,6 +1,6 @@
 {
   "name": "react-native-webrtc-web-shim",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "Shim for React Native WebRTC to support React Native Web",
   "main": "index.js",
   "files": [
