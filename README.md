@@ -1,6 +1,8 @@
 # react-native-webrtc-web-shim
 
-> Add WebRTC support for `react-native-web`, with minimal changes to your existing React Native app.
+![App Tests](https://github.com/ruddell/react-native-webrtc-web-shim/workflows/App%20Tests/badge.svg)
+
+> Add `react-native-web` support to a `react-native-webrtc` app.
 
 This library has interoperability tests for Safari, Firefox, and Chrome. View the [KITE Dashboard](http://jruddell.com/react-native-webrtc-web-shim).
 
