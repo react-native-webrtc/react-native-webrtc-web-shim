@@ -5,6 +5,10 @@ window.MediaStream.prototype.release = function release() {
   this.getTracks().forEach((track) => track.stop());
 };
 
+window.MediaStreamTrack.prototype._switchCamera = function switchCamera() {
+  console.warn('_switchCamera not implemented on web');
+};
+
 window.RTCPeerConnection.prototype.addStream = function addStream(stream) {
   stream.getTracks().forEach((track) => this.addTrack(track, stream));
 };
