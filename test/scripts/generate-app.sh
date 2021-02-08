@@ -15,7 +15,7 @@ npx add-dependencies react-native-webrtc webrtc-adapter
 npm install
 npm link react-native-webrtc-web-shim
 
-cp $GITHUB_WORKSPACE/test/demo/* ./
+cp $GITHUB_WORKSPACE/demo/* ./
 
 expo build:web
 

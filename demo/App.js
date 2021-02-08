@@ -305,7 +305,8 @@ class App extends React.Component {
       await this.addVideo(this.state.wsSessionId, stream);
     } catch (err) {
       console.log('Error getting media permissions');
-      console.error(err);
+      console.warn(err);
+      this.setState({ alertText: `${err}` });
     }
   };
 

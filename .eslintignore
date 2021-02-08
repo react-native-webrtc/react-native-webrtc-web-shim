@@ -1,3 +1,4 @@
 # ignore kite files
 test/kite/
-test/demo
+
+demo
