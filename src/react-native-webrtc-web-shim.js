@@ -8,6 +8,7 @@ import {
   permissions,
   registerGlobals,
 } from 'react-native-webrtc';
+
 import RTCView from './RTCView';
 
 export {

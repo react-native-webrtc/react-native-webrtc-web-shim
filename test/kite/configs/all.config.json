@@ -80,7 +80,7 @@
   "clients": [
     {
       "browserName": "chrome",
-      "version": 88,
+      "version": 116,
       "platform": "localhost",
       "_capabilities": {
         "acceptInsecureCerts": true
@@ -88,7 +88,7 @@
     },
     {
       "browserName": "firefox",
-      "version": 85,
+      "version": 117,
       "platform": "localhost"
     },
     {
