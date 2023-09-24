@@ -19,12 +19,12 @@ sed -i'.backup' "s~rew cask install~rew install --cask~g" *.sh
 rm *.backup
 
 # configure versions
-GECKO_VERSION="v0.29.0"
+GECKO_VERSION="v0.33.0"
 CHROMEDRIVER_VERSION="116.0.5845.96"
 FIREFOX_VERSION="117"
 CHROME_VERSION="116"
 
-sed -i'.backup' "s~GECKO_VERSION=v0.28.0~GECKO_VERSION=$GECKO_VERSION~" ./gridConfig.sh
+sed -i'.backup' "s~GECKO_VERSION=v0.32.0~GECKO_VERSION=$GECKO_VERSION~" ./gridConfig.sh
 sed -i'.backup' "s~CHROMEDRIVER_VERSION=114.0.5735.90~CHROMEDRIVER_VERSION=$CHROMEDRIVER_VERSION~" ./gridConfig.sh
 sed -i'.backup' "s~FIREFOX_VERSION=116~FIREFOX_VERSION=$FIREFOX_VERSION~" ./gridConfig.sh
 sed -i'.backup' "s~CHROME_VERSION=115~CHROME_VERSION=$CHROME_VERSION~" ./gridConfig.sh
