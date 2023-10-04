@@ -19,6 +19,8 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
     'react/prop-types': 'off',
+    'no-underscore-dangle': 'off',
+    'no-console': 'off',
   },
   settings: {
     react: {
