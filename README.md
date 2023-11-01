@@ -1,36 +1,29 @@
-# react-native-webrtc-web-shim
+[<img src="https://avatars.githubusercontent.com/u/42463376" alt="React Native WebRTC" style="height: 6em;" />](https://github.com/react-native-webrtc/react-native-webrtc-web-shim)
 
-![App Tests](https://github.com/ruddell/react-native-webrtc-web-shim/workflows/App%20Tests/badge.svg)
+# React-Native-WebRTC-Web-Shim
 
-> Add `react-native-web` support to a `react-native-webrtc` app.
+[![npm version](https://img.shields.io/npm/v/react-native-webrtc-web-shim)](https://www.npmjs.com/package/react-native-webrtc-web-shim)
+[![npm downloads](https://img.shields.io/npm/dm/react-native-webrtc-web-shim)](https://www.npmjs.com/package/react-native-webrtc-web-shim)
+[![Discourse topics](https://img.shields.io/discourse/topics?server=https%3A%2F%2Freact-native-webrtc.discourse.group%2F)](https://react-native-webrtc.discourse.group/)
 
-This library has interoperability tests for Safari, Firefox, and Chrome. View the [KITE Dashboard](http://jruddell.com/react-native-webrtc-web-shim).
+Add support for `react-native-web` to a `react-native-webrtc` app.
 
-## Requirements
+## Getting Started
 
-This library assumes you have an existing React Native application using [`react-native-webrtc`](https://github.com/react-native-webrtc/react-native-webrtc).
+Use one of the following preferred package install methods to immediately get going.  
 
-## Installation
+**npm:** `npm install react-native-webrtc-web-shim --save`  
+**yarn:** `yarn add react-native-webrtc-web-shim`  
+**pnpm:** `pnpm install react-native-webrtc-web-shim`
 
-Install via `npm` or `yarn`
-
-```bash
-npm install react-native-webrtc-web-shim
-```
-
-## Setup
-
-### Replace Imports
+## Extra Required Steps
 
 Replace the import statement of `react-native-webrtc` to import from `react-native-webrtc-web-shim` instead.
 
 ```javascript
 -import { RTCPeerConnection } from 'react-native-webrtc';
 +import { RTCPeerConnection } from 'react-native-webrtc-web-shim';
-
 ```
-
-### Change WebRTC Code
 
 #### RTCView
 
@@ -45,37 +38,28 @@ When displaying the `RTCView` component, pass it the `stream` object as a prop i
 
 #### Track Listener
 
-Add an `ontrack` listener to your `RTCPeerConnection` object, similar to the `onaddstream` listener.
+Add the `ontrack` listener to your `RTCPeerConnection` object, similar to the `onaddstream` listener.
 
 ```javascript
 // existing code, keep this for native support
-webRtcPeer.onaddstream = async ({ stream }) =>
-  await addVideo(sessionId, stream);
+webRtcPeer.onaddstream = async ({ stream }) => {
+  await addVideo( sessionId, stream );
+};
 
-// add an ontrack listener for web support
+// add the ontrack listener for web support
 webRtcPeer.ontrack = async ({ track, streams }) => {
-  if (track.kind === 'video') {
-    await addVideo(sessionId, streams[0]);
+  if ( track.kind === 'video' ) {
+    await addVideo( sessionId, streams[ 0 ] );
   }
 };
 ```
 
-### Contributing
+## Community
 
-#### Local Build
+Come join our [Discourse Community](https://react-native-webrtc.discourse.group/) if you want to discuss any React Native and WebRTC related topics.  
+Everyone is welcome and every little helps.  
 
-Fork and clone the repository and run:
+## Related Projects
 
-```javascript
-npm link
-```
-
-If you run `npm install`, it will install the peer-dependencies. Due to [this React issue](https://github.com/facebook/react/issues/13991), you will need to link `react` in this project and your application.
-
-```bash
-cd node_modules/react
-npm link
-cd ../../MyApp
-npm link react
-
-```
+Looking for extra functionality coverage?  
+The [react-native-webrtc](https://github.com/react-native-webrtc) organization provides a number of packages which are more than useful when developing Real Time Communication applications.  

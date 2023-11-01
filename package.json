@@ -1,6 +1,6 @@
 {
   "name": "react-native-webrtc-web-shim",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/react-native-webrtc/react-native-webrtc-web-shim.git"
@@ -20,7 +20,7 @@
     "react": ">=16.x",
     "react-native": ">=0.x",
     "react-native-web": ">=0.12",
-    "react-native-webrtc": "~1"
+    "react-native-webrtc": "*"
   },
   "scripts": {
     "prepare": "install-peers",

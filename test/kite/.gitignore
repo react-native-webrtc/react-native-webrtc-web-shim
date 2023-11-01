@@ -1,5 +1,0 @@
-/logs/**
-/results/**
-target
-kite-allure-reports
-*.iml
