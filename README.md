@@ -18,7 +18,7 @@ Use one of the following preferred package install methods to immediately get go
 
 ## Extra Required Steps
 
-Replace the import statement of `react-native-webrtc` to import from `react-native-webrtc-web-shim` instead.
+Import directly from our library instead of `react-native-webrtc`.
 
 ```javascript
 -import { RTCPeerConnection } from 'react-native-webrtc';
@@ -27,7 +27,8 @@ Replace the import statement of `react-native-webrtc` to import from `react-nati
 
 #### RTCView
 
-When displaying the `RTCView` component, pass it the `stream` object as a prop instead of `streamURL`. On Web, this component renders an HTML5 video tag.
+When displaying the `RTCView` component, pass it the `stream` object as a prop instead of `streamURL`.  
+On Web, this component renders an HTML5 video tag.
 
 ```javascript
 <RTCView
