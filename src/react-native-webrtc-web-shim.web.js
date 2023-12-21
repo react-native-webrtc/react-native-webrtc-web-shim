@@ -5,38 +5,10 @@ window.MediaStream.prototype.release = function release() {
   this.getTracks().forEach((track) => track.stop());
 };
 
-window.MediaStreamTrack.prototype._switchCamera = function switchCamera() {
-  console.warn('_switchCamera not implemented on web');
+window.MediaStreamTrack.prototype._switchCamera = function _switchCamera() {
+  console.warn('_switchCamera is not implemented on web.');
 };
 
-window.RTCPeerConnection.prototype.addStream = function addStream(stream) {
-  stream.getTracks().forEach((track) => this.addTrack(track, stream));
-};
+const { MediaStream, MediaStreamTrack } = window;
 
-const {
-  RTCPeerConnection,
-  RTCIceCandidate,
-  RTCSessionDescription,
-  MediaStream,
-  MediaStreamTrack,
-} = window;
-
-const { mediaDevices, permissions } = navigator;
-
-const registerGlobals = () => {
-  window.mediaDevices = navigator.mediaDevices;
-  window.permissions = navigator.permissions;
-};
-
-export {
-  RTCIceCandidate,
-  RTCSessionDescription,
-  MediaStreamTrack,
-  mediaDevices,
-  permissions,
-  // customizations
-  registerGlobals,
-  RTCPeerConnection,
-  MediaStream,
-  RTCView,
-};
+export { MediaStream, MediaStreamTrack, RTCView };

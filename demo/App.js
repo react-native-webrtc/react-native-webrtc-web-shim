@@ -342,7 +342,8 @@ class App extends React.Component {
           <Text style={styles.label}>WebRTC Demo</Text>
           <KeyboardAvoidingView
             style={styles.flex}
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          >
             <View style={[styles.flex, styles.borderedContainer]}>
               <Text style={styles.label}>Video</Text>
               {this.state.alertText && (
