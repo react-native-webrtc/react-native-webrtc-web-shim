@@ -18,25 +18,41 @@ Use one of the following preferred package install methods to immediately get go
 
 ## Extra Required Steps
 
-Import the `RTCView` component from our library instead of `react-native-webrtc`.
+Import directly from our library instead of `react-native-webrtc`.
 
 ```javascript
-import { RTCView } from 'react-native-webrtc-web-shim';
+import {
+  RTCPeerConnection,
+  RTCIceCandidate,
+  RTCSessionDescription,
+  RTCRtpTransceiver,
+  RTCRtpReceiver,
+  RTCRtpSender,
+  RTCErrorEvent,
+  MediaStream,
+  MediaStreamTrack,
+  mediaDevices,
+  permissions,
+  registerGlobals,
+  RTCView,
+} from 'react-native-webrtc-web-shim';
 ```
 
-When displaying the `RTCView` component make sure to give it the `stream` object as a prop instead of `streamURL`. That will allow us to render an HTML5 video when applicable.
+When displaying the `RTCView` component make sure to give it the `stream` object as a prop instead of `streamURL`, you'll then be using an HTML5 video element on your Web app.
 
-Change this.
+Simply change this.
 
 ```javascript
 <RTCView streamURL={stream.toURL()} />
 ```
 
-To be like this.
+To be like the following.
 
 ```javascript
 <RTCView stream={stream} />
 ```
+
+You don't need `toURL` as that is handled for you.
 
 ## Community
 

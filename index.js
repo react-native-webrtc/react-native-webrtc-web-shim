@@ -1,7 +1,31 @@
 import {
+  RTCPeerConnection,
+  RTCIceCandidate,
+  RTCSessionDescription,
+  RTCRtpTransceiver,
+  RTCRtpReceiver,
+  RTCRtpSender,
+  RTCErrorEvent,
   MediaStream,
   MediaStreamTrack,
+  mediaDevices,
+  permissions,
+  registerGlobals,
   RTCView,
 } from './src/react-native-webrtc-web-shim';
 
-export { MediaStream, MediaStreamTrack, RTCView };
+export {
+  RTCPeerConnection,
+  RTCIceCandidate,
+  RTCSessionDescription,
+  RTCRtpTransceiver,
+  RTCRtpReceiver,
+  RTCRtpSender,
+  RTCErrorEvent,
+  MediaStream,
+  MediaStreamTrack,
+  mediaDevices,
+  permissions,
+  registerGlobals,
+  RTCView,
+};
