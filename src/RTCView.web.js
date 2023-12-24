@@ -7,7 +7,7 @@ const Video = React.forwardRef((props, ref) =>
 );
 Video.displayName = 'Video';
 
-export default function RTCView({ stream, style, ...props }) {
+export default function RTCView({ stream, ...props }) {
   const videoRef = React.createRef();
   React.useEffect(() => {
     if (stream && videoRef.current) {
@@ -20,7 +20,7 @@ export default function RTCView({ stream, style, ...props }) {
       ref={videoRef}
       autoPlay
       playsInline
-      style={[{ flex: 1 }, ...style]}
+      style={{ flex: 1 }}
       {...props}
     />
   );
