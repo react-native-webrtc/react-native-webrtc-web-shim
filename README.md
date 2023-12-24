@@ -10,7 +10,7 @@ Add support for `react-native-web` to a `react-native-webrtc` app.
 
 ## Getting Started
 
-Use one of the following preferred package install methods to immediately get going.  
+Use one of the following preferred package install methods to immediately get going.
 
 **npm:** `npm install react-native-webrtc-web-shim --save`  
 **yarn:** `yarn add react-native-webrtc-web-shim`  
@@ -21,46 +21,45 @@ Use one of the following preferred package install methods to immediately get go
 Import directly from our library instead of `react-native-webrtc`.
 
 ```javascript
--import { RTCPeerConnection } from 'react-native-webrtc';
-+import { RTCPeerConnection } from 'react-native-webrtc-web-shim';
+import {
+  RTCPeerConnection,
+  RTCIceCandidate,
+  RTCSessionDescription,
+  RTCRtpTransceiver,
+  RTCRtpReceiver,
+  RTCRtpSender,
+  RTCErrorEvent,
+  MediaStream,
+  MediaStreamTrack,
+  mediaDevices,
+  permissions,
+  registerGlobals,
+  RTCView,
+} from 'react-native-webrtc-web-shim';
 ```
 
-#### RTCView
+When displaying the `RTCView` component make sure to give it the `stream` object as a prop instead of `streamURL`, you'll then be using an HTML5 video element on your Web app.
 
-When displaying the `RTCView` component, pass it the `stream` object as a prop instead of `streamURL`.  
-On Web, this component renders an HTML5 video tag.
+Simply change this.
 
 ```javascript
-<RTCView
-  -streamURL={stream.toURL()}
-  +stream={stream}
-/>
+<RTCView streamURL={stream.toURL()} />
 ```
 
-#### Track Listener
-
-Add the `ontrack` listener to your `RTCPeerConnection` object, similar to the `onaddstream` listener.
+To be like the following.
 
 ```javascript
-// existing code, keep this for native support
-webRtcPeer.onaddstream = async ({ stream }) => {
-  await addVideo( sessionId, stream );
-};
-
-// add the ontrack listener for web support
-webRtcPeer.ontrack = async ({ track, streams }) => {
-  if ( track.kind === 'video' ) {
-    await addVideo( sessionId, streams[ 0 ] );
-  }
-};
+<RTCView stream={stream} />
 ```
+
+You don't need `toURL` as that is handled for you.
 
 ## Community
 
 Come join our [Discourse Community](https://react-native-webrtc.discourse.group/) if you want to discuss any React Native and WebRTC related topics.  
-Everyone is welcome and every little helps.  
+Everyone is welcome and every little helps.
 
 ## Related Projects
 
 Looking for extra functionality coverage?  
-The [react-native-webrtc](https://github.com/react-native-webrtc) organization provides a number of packages which are more than useful when developing Real Time Communication applications.  
+The [react-native-webrtc](https://github.com/react-native-webrtc) organization provides a number of packages which are more than useful when developing Real Time Communication applications.
