@@ -1,5 +1,7 @@
 import RTCView from './RTCView';
 
+if (typeof window !== "undefined") {
+
 window.MediaStream.prototype.release = function release() {
   this.getTracks().forEach((track) => track.stop());
 };
@@ -7,6 +9,8 @@ window.MediaStream.prototype.release = function release() {
 window.MediaStreamTrack.prototype._switchCamera = function _switchCamera() {
   console.warn('_switchCamera is not implemented on web.');
 };
+
+}
 
 const {
   RTCPeerConnection,
@@ -18,13 +22,15 @@ const {
   RTCErrorEvent,
   MediaStream,
   MediaStreamTrack,
-} = window;
+} = typeof window !== "undefined" ? window : {};
 
-const { mediaDevices, permissions } = navigator;
+const { mediaDevices, permissions } = typeof window !== "undefined" ? navigator : {};
 
 function registerGlobals() {
-  window.mediaDevices = navigator.mediaDevices;
-  window.permissions = navigator.permissions;
+  if (typeof window !== "undefined") {
+    window.mediaDevices = navigator.mediaDevices;
+    window.permissions = navigator.permissions;
+  }
 }
 
 export {
